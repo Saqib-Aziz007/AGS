@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "975164939219",
+    "project_id": "ali-general-store",
+    "storage_bucket": "ali-general-store.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:975164939219:android:d4530b84838ed94c54ed26",
+        "android_client_info": {
+          "package_name": "com.awesomeproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "975164939219-1o17qs1me8pkope2d887daceh4r48nfi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD1VNZDHa8Ae-3Stos0vX9DPeqr7NyF2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "975164939219-1o17qs1me8pkope2d887daceh4r48nfi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

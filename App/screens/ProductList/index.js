@@ -12,6 +12,7 @@ import {
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firestore from '@react-native-firebase/firestore';
+import Storage from '@react-native-firebase/storage';
 
 import ProductListItem from '../../components/ProductListItem';
 import ProductDescriptionModal from '../../components/ProductDiscriptionModal';
@@ -38,24 +39,29 @@ const ProductList = () => {
 
   const addProducts = async values => {
     const date = new Date();
-    const doc = await firestore()
-      .collection('products')
-      .doc(date.toISOString());
-    // console.log({
-    //   name: values?.name,
-    //   desc: values?.desc,
-    //   retailPrice: values?.retailPrice,
-    //   inVoicePrice: values?.inVoicePrice,
-    //   productImage: values?.productImage,
-    // });
-    doc.set({
-      id: date.toISOString(),
-      name: values?.name,
-      desc: values?.desc,
-      retailPrice: values?.retailPrice,
-      inVoicePrice: values?.inVoicePrice,
-      productImage: values?.productImage,
-    });
+    const extension = values?.productImage.split('.').pop();
+    const fileToUpload = date.toISOString() + '.' + extension;
+    console.log(fileToUpload, 'extension');
+    try {
+      const ref = await Storage()
+        .ref(fileToUpload)
+        .putFile(values?.productImage);
+      const imageKey = await Storage().ref(fileToUpload).getDownloadURL();
+      console.log(imageKey, 'image key downloadable');
+      const doc = await firestore()
+        .collection('products')
+        .doc(date.toISOString());
+      doc.set({
+        id: date.toISOString(),
+        name: values?.name,
+        desc: values?.desc,
+        retailPrice: values?.retailPrice,
+        inVoicePrice: values?.inVoicePrice,
+        productImage: imageKey,
+      });
+    } catch (error) {
+      console.log(error, 'Error while uploading image');
+    }
   };
 
   const deleteProduct = async id => {
@@ -73,19 +79,22 @@ const ProductList = () => {
       item?._data?.name?.toLowerCase().includes(searchText.toLowerCase()),
     );
 
+  const getData = async () => {
+    const doc = await firestore()
+      .collection('products')
+      .orderBy('id', 'desc')
+      .onSnapshot(data => setProducts(data?.docs));
+  };
+
   useEffect(() => {
-    const getData = async () => {
-      const doc = await firestore()
-        .collection('products')
-        .onSnapshot(data => setProducts(data?.docs));
-    };
     getData();
     return setSearchText('');
   }, []);
+
   return (
     <>
       <View style={styles.mainContainer}>
-        <StatusBar backgroundColor={'purple'} />
+        <StatusBar backgroundColor={'#104F55'} />
         <SafeAreaView style={{flex: 1}}>
           <View style={styles.header}>
             <Text style={styles.title}>ProductList</Text>
@@ -94,7 +103,7 @@ const ProductList = () => {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                width: 60,
+                // width: 60,
               }}>
               {search ? (
                 <Icon
@@ -102,6 +111,7 @@ const ProductList = () => {
                   onPress={() => setSearch(!search)}
                   color={'white'}
                   size={20}
+                  style={{marginRight: 8}}
                 />
               ) : (
                 <Icon
@@ -109,53 +119,43 @@ const ProductList = () => {
                   onPress={() => setSearch(!search)}
                   color={'white'}
                   size={20}
+                  style={{marginRight: 8}}
                 />
               )}
-              <Icon
-                onPress={() => setAddProduct(true)}
-                name="plus"
-                color={'white'}
-                size={20}
-              />
+              {search ? null : (
+                <View
+                  style={{
+                    // position: 'absolute',
+                    backgroundColor: '#F16889',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    borderRadius: 50,
+                    padding: 8,
+                    marginRight: -10,
+                  }}>
+                  <Text style={{fontSize: 14, color: 'white'}}>
+                    {products?.length}
+                  </Text>
+                </View>
+              )}
             </View>
           </View>
-          {search ? null : (
-            <View
-              style={{
-                // backgroundColor: 'red',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                // height: 120,
-                // width: '100%',
-                paddingHorizontal: 16,
-              }}>
-              <AmountBox text={'Total Products'} amount={products.length} />
-              {/* <AmountBox
-                text={'Total\nRetail Price'}
-                amount={totalRetailPrice}
-              />
-              <AmountBox
-                text={'Total\nInvoice Price'}
-                amount={totalInvoicePrice}
-              /> */}
-            </View>
-          )}
           {search ? (
             <View>
               <TextInput
                 style={{
                   width: '90%',
-                  height: 48,
+                  height: 42,
                   backgroundColor: 'white',
                   borderWidth: 1.5,
-                  borderColor: 'purple',
+                  borderColor: '#F16889',
                   alignSelf: 'center',
                   marginTop: 20,
                   borderRadius: 24,
                   paddingHorizontal: 20,
-                  fontSize: 20,
-                  color: 'black',
+                  fontSize: 16,
+                  color: '#104F55',
                 }}
                 value={searchText}
                 onChangeText={setSearchText}
@@ -184,6 +184,26 @@ const ProductList = () => {
               })}
             </View>
           </ScrollView>
+          <View
+            style={{
+              position: 'absolute',
+              bottom: 16,
+              right: 16,
+              height: 50,
+              width: 50,
+              borderRadius: 25,
+              backgroundColor: '#104F55',
+              justifyContent: 'center',
+              alignItems: 'center',
+              overflow: 'hidden',
+            }}>
+            <Icon
+              onPress={() => setAddProduct(true)}
+              name="plus"
+              color={'white'}
+              size={20}
+            />
+          </View>
         </SafeAreaView>
       </View>
       <ProductDescriptionModal

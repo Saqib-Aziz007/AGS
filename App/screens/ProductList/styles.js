@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   header: {
-    backgroundColor: 'purple',
+    backgroundColor: '#104F55',
     height: '8%',
     flexDirection: 'row',
     justifyContent: 'space-between',

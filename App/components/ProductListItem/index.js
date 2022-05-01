@@ -28,7 +28,7 @@ const ProductListItem = ({listItem, onLongPress, onPress, containerStyle}) => {
           <Text style={styles.subTitle}>{_data?.desc}</Text>
         </View>
         <View>
-          <Text style={{...styles.subTitle, color: 'purple'}}>
+          <Text style={{...styles.subTitle, color: '#104F55'}}>
             Retail Price
           </Text>
           <Text style={styles.pkrText}>

@@ -88,13 +88,13 @@ const styles = StyleSheet.create({
   buttonStyleLogin: {
     backgroundColor: 'green',
     borderRadius: 8,
-    borderWidth: 1.5,
+    borderWidth: 1,
     borderColor: 'green',
   },
   requestSentButtonStyleLogin: {
     backgroundColor: 'orange',
     borderRadius: 8,
-    borderWidth: 1.5,
+    borderWidth: 1,
     borderColor: 'gray',
   },
   btnTextLogin: {

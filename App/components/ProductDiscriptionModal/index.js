@@ -33,7 +33,7 @@ const ProductDescriptionModal = ({modalVisible, setModalVisible, listItem}) => {
             }}>
             <Text
               style={{
-                color: 'purple',
+                color: '#104F55',
                 fontWeight: '400',
                 fontSize: 24,
                 alignSelf: 'center',
@@ -51,7 +51,7 @@ const ProductDescriptionModal = ({modalVisible, setModalVisible, listItem}) => {
                 alignSelf: 'center',
                 marginTop: 50,
                 marginBottom: 50,
-                borderColor: 'purple',
+                borderColor: '#104F55',
                 borderWidth: 1.5,
               }}
             />
@@ -64,13 +64,13 @@ const ProductDescriptionModal = ({modalVisible, setModalVisible, listItem}) => {
               <Text
                 style={{
                   fontSize: 16,
-                  color: 'purple',
+                  color: '#104F55',
                   fontWeight: '400',
                   marginBottom: 12,
                 }}>
                 Retail Price
               </Text>
-              <Text style={{fontWeight: '300', color: 'purple', fontSize: 10}}>
+              <Text style={{fontWeight: '300', color: '#104F55', fontSize: 10}}>
                 {'PKR '}
                 <Text
                   style={{fontWeight: 'bold', color: 'black', fontSize: 16}}>
@@ -87,13 +87,13 @@ const ProductDescriptionModal = ({modalVisible, setModalVisible, listItem}) => {
               <Text
                 style={{
                   fontSize: 16,
-                  color: 'purple',
+                  color: '#104F55',
                   fontWeight: '400',
                   marginBottom: 12,
                 }}>
                 Invoice Price
               </Text>
-              <Text style={{fontWeight: '300', fontSize: 10, color: 'purple'}}>
+              <Text style={{fontWeight: '300', fontSize: 10, color: '#104F55'}}>
                 {'PKR '}
                 <Text
                   style={{fontWeight: 'bold', fontSize: 16, color: 'black'}}>
@@ -112,7 +112,7 @@ const ProductDescriptionModal = ({modalVisible, setModalVisible, listItem}) => {
                   fontSize: 16,
                   fontWeight: '400',
                   marginBottom: 8,
-                  color: 'purple',
+                  color: '#104F55',
                 }}>
                 Description
               </Text>

@@ -175,8 +175,8 @@ const AddProduct = ({modalVisible, setModalVisible, onSubmit}) => {
                       justifyContent: 'center',
                       alignItems: 'center',
                       marginVertical: 40,
-                      borderWidth: 2,
-                      borderColor: 'purple',
+                      borderWidth: 1,
+                      borderColor: '#104F55',
                     }}>
                     {filePath.length > 2 ? (
                       <Image
@@ -187,8 +187,8 @@ const AddProduct = ({modalVisible, setModalVisible, onSubmit}) => {
                       <Icon
                         onPress={() => requestCameraPermission()}
                         name="plus"
-                        color={'purple'}
-                        size={35}
+                        color={'#104F55'}
+                        size={28}
                       />
                     )}
                   </View>
@@ -201,11 +201,11 @@ const AddProduct = ({modalVisible, setModalVisible, onSubmit}) => {
                       style={{
                         height: 40,
                         width: 250,
-                        borderWidth: 1.5,
+                        borderWidth: 1,
                         borderRadius: 8,
                         color: 'black',
                         paddingHorizontal: 10,
-                        borderColor: 'purple',
+                        borderColor: '#104F55',
                       }}
                       value={prodName}
                       onChangeText={setProdName}
@@ -220,11 +220,11 @@ const AddProduct = ({modalVisible, setModalVisible, onSubmit}) => {
                       style={{
                         height: 40,
                         width: 250,
-                        borderWidth: 1.5,
+                        borderWidth: 1,
                         borderRadius: 8,
                         color: 'black',
                         paddingHorizontal: 10,
-                        borderColor: 'purple',
+                        borderColor: '#104F55',
                       }}
                       keyboardType="numeric"
                       value={retailPrice}
@@ -240,11 +240,11 @@ const AddProduct = ({modalVisible, setModalVisible, onSubmit}) => {
                       style={{
                         height: 40,
                         width: 250,
-                        borderWidth: 1.5,
+                        borderWidth: 1,
                         borderRadius: 8,
                         color: 'black',
                         paddingHorizontal: 10,
-                        borderColor: 'purple',
+                        borderColor: '#104F55',
                       }}
                       keyboardType="numeric"
                       value={inVoicePrice}
@@ -260,11 +260,11 @@ const AddProduct = ({modalVisible, setModalVisible, onSubmit}) => {
                       style={{
                         height: 80,
                         width: 250,
-                        borderWidth: 1.5,
+                        borderWidth: 1,
                         borderRadius: 8,
                         color: 'black',
                         paddingHorizontal: 10,
-                        borderColor: 'purple',
+                        borderColor: '#104F55',
                         textAlignVertical: 'top',
                       }}
                       multiline
@@ -275,19 +275,19 @@ const AddProduct = ({modalVisible, setModalVisible, onSubmit}) => {
                   </View>
                   <TouchableOpacity
                     onPress={() => {
-                      console.log(
-                        JSON.stringify(
-                          {
-                            name: prodName,
-                            retailPrice: retailPrice,
-                            inVoicePrice: inVoicePrice,
-                            productImage: filePath,
-                            desc: desc,
-                          },
-                          null,
-                          2,
-                        ),
-                      );
+                      // console.log(
+                      //   JSON.stringify(
+                      //     {
+                      //       name: prodName,
+                      //       retailPrice: retailPrice,
+                      //       inVoicePrice: inVoicePrice,
+                      //       productImage: filePath,
+                      //       desc: desc,
+                      //     },
+                      //     null,
+                      //     2,
+                      //   ),''
+                      // );
                       onSubmit({
                         id: Math.random() * 100,
                         name: prodName,
@@ -304,7 +304,7 @@ const AddProduct = ({modalVisible, setModalVisible, onSubmit}) => {
                       setModalVisible(false);
                     }}
                     style={{
-                      backgroundColor: 'purple',
+                      backgroundColor: '#104F55',
                       height: 56,
                       width: 250,
                       marginVertical: 20,

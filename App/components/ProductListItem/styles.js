@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     marginVertical: 4,
-    borderColor: 'purple',
+    borderColor: '#104F55',
     borderWidth: 0.5,
   },
   titleText: {
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     height: 80,
     width: 80,
     backgroundColor: 'lightgrey',
-    borderColor: 'purple',
+    borderColor: '#104F55',
     borderRightWidth: 1,
   },
   mainView: {
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   pkrText: {
     fontSize: 10,
     fontWeight: '300',
+    color: '#F16889',
   },
 });
 
